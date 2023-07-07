@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import LoginPage from './Components/Login/LoginPage';
+import Dashboard from './Components/Dashboard/Dashboard';
 
 function App() {
+  const [sessionToken, setSessionToken] = useState('');
+
+  // Function to handle successful login
+  const handleLogin = (token) => {
+    localStorage.setItem('sessionToken', token); // Store the session token in localStorage
+    setSessionToken(token);
+  };
+
+  // Function to handle logout
+  const handleLogout = () => {
+    localStorage.removeItem('sessionToken'); // Remove the session token from localStorage
+    setSessionToken('');
+  };
+
+  // Retrieve session token from localStorage on component mount
+  useEffect(() => {
+    const token = localStorage.getItem('sessionToken');
+    if (token) {
+      setSessionToken(token);
+    }
+  }, []);
+
+  // Render login page or dashboard based on sessionToken state
+  const renderContent = () => {
+    if (sessionToken) {
+      // User is logged in, render dashboard
+      return <Dashboard onLogout={handleLogout} />;
+    } else {
+      // User is not logged in, render login page
+      return <LoginPage onLogin={handleLogin} />;
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {renderContent()}
     </div>
   );
 }
 
 export default App;
+
