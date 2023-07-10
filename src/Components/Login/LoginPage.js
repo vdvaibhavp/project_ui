@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import Navbar from '../Navbar/Navbar';
 
 function LoginPage({ onLogin }) {
   const [username, setUsername] = useState('');
@@ -14,6 +15,8 @@ function LoginPage({ onLogin }) {
 
   return (
     <div className="container">
+      <Navbar/>
+      <br></br>
       <h1 className="mb-4">Login To t3 AutomationEdge</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
