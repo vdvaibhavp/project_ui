@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import Navbar from '../Navbar/Navbar';
 
-function LoginPage({ onLogin }) {
+function LoginPage({ onLogin, isAuthenticated }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const sessionToken = '';
+    const sessionToken = 'my token';
     onLogin(sessionToken);
   };
 
   return (
     <div className="container">
-      <Navbar/>
+      <Navbar showLogoutButton={isAuthenticated}/>
       <br></br>
       <h1 className="mb-4">Login To t3 AutomationEdge</h1>
       <form onSubmit={handleSubmit}>

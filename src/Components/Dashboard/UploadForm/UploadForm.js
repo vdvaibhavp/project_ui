@@ -1,9 +1,9 @@
 import React from 'react'
 
-function UploadForm({handleFile1Change, handleFile2Change, handleSubmit}) {
+function UploadForm({handleFile1Change, handleFile2Change, handleSubmitForm}) {
   return (
     <div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmitForm}>
             <div className="form-group">
               <label htmlFor="file1">File 1</label>
               <input
