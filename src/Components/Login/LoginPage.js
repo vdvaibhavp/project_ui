@@ -1,16 +1,38 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import Navbar from '../Navbar/Navbar';
+import axios from 'axios';
 
 function LoginPage({ onLogin, isAuthenticated }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const runLogoutTimer = () => {
+    const timer = setTimeout(() => {
+      console.log("Timer Initiated");
+      localStorage.removeItem('sessionToken')
+      alert("Session Expired!! Please Login Again.")
+      window.location.reload(); 
+    }, 300000);
+  };
 
-    const sessionToken = 'my token';
-    onLogin(sessionToken);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await axios.get('/authenticate', {
+      params: {
+        username: username,
+        password: password,
+      },
+    })
+    .then(response => {
+        const sessionToken = response.data;
+        onLogin(sessionToken);
+        runLogoutTimer();
+    })
+    .catch(error => {
+      console.error(error);
+      alert("Re-enter the credentials correctly.");
+    });
   };
 
   return (
