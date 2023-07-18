@@ -1,11 +1,12 @@
 import React from 'react'
-
+import './UploadForm.css'
 function UploadForm({handleFile1Change, handleFile2Change, handleSubmitForm}) {
   return (
-    <div>
+    <div class="form-container">
         <form onSubmit={handleSubmitForm}>
             <div className="form-group">
-              <label htmlFor="file1">File 1</label>
+              <label htmlFor="file1">File1 To Upload : </label>
+              <br/>
               <input
                 type="file"
                 id="file1"
@@ -15,7 +16,8 @@ function UploadForm({handleFile1Change, handleFile2Change, handleSubmitForm}) {
             </div>
             <br/>
             <div className="form-group">
-              <label htmlFor="file2">File 2</label>
+              <label htmlFor="file2">File2 To Upload :</label>
+              <br/>
               <input
                 type="file"
                 id="file2"
