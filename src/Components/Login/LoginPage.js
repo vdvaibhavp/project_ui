@@ -7,13 +7,17 @@ function LoginPage({ onLogin, isAuthenticated }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  //set timeout Id
+  const [timeId, SetTimeId] = useState(null);
+
   const runLogoutTimer = () => {
     const timer = setTimeout(() => {
       console.log("Timer Initiated");
       localStorage.removeItem('sessionToken')
       alert("Session Expired!! Please Login Again.")
       window.location.reload(); 
-    }, 300000);
+    }, 500000);
+    SetTimeId(timeId);
   };
 
   const handleSubmit = async (e) => {
@@ -25,9 +29,11 @@ function LoginPage({ onLogin, isAuthenticated }) {
       },
     })
     .then(response => {
-        const sessionToken = response.data;
-        onLogin(sessionToken);
+        const sessionToken = response.data.sessionToken;
+        localStorage.setItem('fname', response.data.userFirstName);
+        localStorage.setItem('lname', response.data.userLastName); 
         runLogoutTimer();
+        onLogin(sessionToken, timeId);
     })
     .catch(error => {
       console.error(error);

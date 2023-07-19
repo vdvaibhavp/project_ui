@@ -18,17 +18,18 @@ function RenderComponent({requestId, callRender}) {
       responseType: 'blob',
     })
       .then(response => {
-      const url = new Blob([response.data]);
+      const url = new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
       const link = document.createElement('a');
       link.href = url;
       link.setAttribute('download', 'product_output.xlsx'); 
       document.body.appendChild(link);
       link.click();
+      callRender();
       })
       .catch(error => {
         console.error('Error occurred while downloading the file:', error);
       });
-    callRender();
+    
   }
 
 

@@ -5,7 +5,7 @@ import UploadForm from './UploadForm/UploadForm';
 import RenderComponent from './RenderComponent';
 import axios from 'axios';
 
-function Dashboard({ onLogout, isAuthenticated }) {
+function Dashboard({ onLogout, isAuthenticated}) {
   const [msg, setMsg] = useState("Click On Submit To get Response");
   const [load, setLoad] = useState(false);
   const [requestId, setRequestId] = useState(null);
