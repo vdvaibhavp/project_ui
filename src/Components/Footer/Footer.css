@@ -28,7 +28,8 @@
       width: 50%;
       margin: auto;
   }
-  button.btn.btn-primary {
+  
+  .login-page {
       width: 100px;
       margin-left: 220px;
   }
