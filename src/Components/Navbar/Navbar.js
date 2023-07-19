@@ -27,7 +27,6 @@ function Navbar({onLogout, showLogoutButton}) {
             </div>
         )}
     </div>
-
     );
 }
 
