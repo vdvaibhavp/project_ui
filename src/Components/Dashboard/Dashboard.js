@@ -5,7 +5,7 @@ import Navbar from '../Navbar/Navbar';
 import UploadForm from './UploadForm/UploadForm';
 import RenderComponent from './RenderComponent';
 import axios from 'axios';
-import './UploadForm/Dashboard.css';
+import Footer from '../Footer/Footer';
 
 
 function Dashboard({ onLogout, isAuthenticated }) {
@@ -78,7 +78,6 @@ function Dashboard({ onLogout, isAuthenticated }) {
   };
 
   return (
-
     // <div className="dashboard-container bg-grey p-4">
     //   <Navbar showLogoutButton={isAuthenticated} onLogout={onLogout} />
 
@@ -122,49 +121,51 @@ function Dashboard({ onLogout, isAuthenticated }) {
     //       </div>
     //     </div>
     //   </div>
+    //   <Footer/>
     // </div>
 
     // container -1
     <>
-
       <Navbar showLogoutButton={isAuthenticated} onLogout={onLogout} />
-      <div class="container mt-5 pt-5">
+      <div class="container mt-3 pt-5">
         <div class="row" >
           <div class="col-md-6">
             {/* <div class="card-deck"> */}
-            <div class="card bg-card bg-light text-black">
-              <div class="card-body">
-                <form action="" class="was-validated">
-                  <div class="form-group">
-                    <UploadForm
-                      handleFile1Change={handleFile1Change}
-                      handleFile2Change={handleFile2Change}
-                      handleSubmitForm={handleSubmitForm}
-                    />
-                  </div>
-                </form>
+              <div class="card bg-card bg-light text-black">
+                <div class="card-body" >
+                  <form action="" class="was-validated">
+                    <div class="form-group" >
+                      <UploadForm
+                        handleFile1Change={handleFile1Change}
+                        handleFile2Change={handleFile2Change}
+                        handleSubmitForm={handleSubmitForm}
+                      />
+                    </div>
+                  </form>
+                </div>
               </div>
-            </div>
             {/* </div> */}
           </div>
 
-          <div class="col-md-6 w-50 h-50 border">
-            <div class="card bg-card bg-light text-black">
-              <div class="card-body text-center h-50">
+          <div class="col-md-6">
+            <div class="card bg-card text-black">
+              <div class="card-body text-center">
                 <h4 className="response-field text-center">Check Your Response</h4>
-                <div class="">
+                <div class="mt-4 p-4"></div>
                   {load ? (
                     <RenderComponent requestId={requestId} callRender={callRender} />
                   ) : (
-                    <div class="border "><h5>{msg}</h5></div>
+                    <div class="mt-5 pt-5"><h5>{msg}</h5></div>
                   )}
-                </div>
+                <div class="mt-3 p-2"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       {/* container -2 */}
+
       <div class="container pt-3">
         <div class="row">
           <div class="col-md-6">
@@ -207,19 +208,18 @@ function Dashboard({ onLogout, isAuthenticated }) {
           </div>
 
           <div class="col-md-6">
-            {/* <div class="box border rounded">  */}
             <div class="row">
-              <div class="col-md-6 ">
+              <div class="col-md-6 col-sm-4">
                 <div class="card-deck">
                   <div class="card bg-card bg-light text-black">
-                    <div class="card-body text-center" style={{fontSize:25}}>
+                    <div class="card-body text-center" style={{ fontSize: 25 }}>
                       <p class="card-text">Total Row Count</p>
                       <div class="border border-radius: 25px">*Number</div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-6 col-sm-4">
                 <div class="card-deck">
                   <div class="card bg-card bg-light text-black">
                     <div class="card-body text-center" style={{ fontSize: 25 }}>
@@ -230,9 +230,11 @@ function Dashboard({ onLogout, isAuthenticated }) {
                 </div>
               </div>
             </div>
-            {/* </div> */}
           </div>
         </div>
+      </div>
+      <div class="pt-5">
+        <Footer />
       </div>
     </>
   );

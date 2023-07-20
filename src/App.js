@@ -5,18 +5,27 @@ import Dashboard from './Components/Dashboard/Dashboard';
 function App() {
   const [sessionToken, setSessionToken] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const [logoutTimeId, setLogoutTimeId ] = useState(null);
   // Function to handle successful login
-  const handleLogin = (token) => {
+  const handleLogin = (token , timeId) => {
     localStorage.setItem('sessionToken', token); // Store the session token in localStorage
     setSessionToken(token);
-    setIsAuthenticated(true)
+    setIsAuthenticated(true);
+    setLogoutTimeId(timeId);
+    console.log();
   };
 
   // Function to handle logout
   const handleLogout = () => {
-    localStorage.removeItem('sessionToken'); // Remove the session token from localStorage
+    console.log(logoutTimeId);
+    localStorage.removeItem('sessionToken');
+    localStorage.clear();
     setSessionToken('');
-    setIsAuthenticated(false)
+    setIsAuthenticated(false);
+    console.log(logoutTimeId);
+    clearTimeout(logoutTimeId);
+    
   };
 
   // Retrieve session token from localStorage on component mount

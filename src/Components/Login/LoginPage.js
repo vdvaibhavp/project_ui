@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import Navbar from '../Navbar/Navbar';
+import footer from '../Footer/Footer';
 import axios from 'axios';
 import logins from './LoginSide.jpg';
 import loginb from './Login_Background.jpg';
 import Image from 'react-bootstrap/Image';
+import Footer from '../Footer/Footer';
 
 function LoginPage({ onLogin, isAuthenticated }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  //set timeout Id
+  const [timeId, SetTimeId] = useState(null);
 
   const runLogoutTimer = () => {
     const timer = setTimeout(() => {
@@ -17,25 +22,26 @@ function LoginPage({ onLogin, isAuthenticated }) {
       alert("Session Expired!! Please Login Again.")
       window.location.reload();
     }, 300000);
+    SetTimeId(timeId);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const response = await axios.get('/authenticate', {
-    //   params: {
-    //     username: username,
-    //     password: password,
-    //   },
-    // })
-    // .then(response => {
-    const sessionToken = "response.data";
+    const response = await axios.get('/authenticate', {
+      params: {
+        username: username,
+        password: password,
+      },
+    })
+    .then(response => {
+    const sessionToken = response.data;
     onLogin(sessionToken);
     runLogoutTimer();
-    // })
-    // .catch(error => {
-    //   console.error(error);
-    //   alert("Re-enter the credentials correctly.");
-    // });
+    })
+    .catch(error => {
+      console.error(error);
+      alert("Re-enter the credentials correctly.");
+    });
   };
 
   return (
@@ -70,7 +76,7 @@ function LoginPage({ onLogin, isAuthenticated }) {
         </form>
       </div> */}
 
-      {/* <Navbar showLogoutButton={isAuthenticated} /> */}
+      <Navbar showLogoutButton={isAuthenticated} />
       
       <div class="container pt-5">
         <div class="row rounded mt-5 ">
