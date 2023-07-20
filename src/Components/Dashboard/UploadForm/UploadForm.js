@@ -5,7 +5,7 @@ function UploadForm({handleFile1Change, handleFile2Change, handleSubmitForm}) {
     <div class="form-container">
         <form onSubmit={handleSubmitForm}>
             <div className="form-group">
-              <label htmlFor="file1">File1 To Upload : </label>
+              <label htmlFor="file1">Upload First File : </label>
               <br/>
               <input
                 type="file"
@@ -16,7 +16,7 @@ function UploadForm({handleFile1Change, handleFile2Change, handleSubmitForm}) {
             </div>
             <br/>
             <div className="form-group">
-              <label htmlFor="file2">File2 To Upload :</label>
+              <label htmlFor="file2">Upload Second File :</label>
               <br/>
               <input
                 type="file"
