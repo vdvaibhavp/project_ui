@@ -13,7 +13,7 @@ function App() {
     setSessionToken(token);
     setIsAuthenticated(true);
     setLogoutTimeId(timeId);
-    console.log();
+    console.log(timeId);
   };
 
   // Function to handle logout
