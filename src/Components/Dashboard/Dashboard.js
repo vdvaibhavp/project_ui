@@ -4,8 +4,10 @@ import Navbar from '../Navbar/Navbar';
 import UploadForm from './UploadForm/UploadForm';
 import RenderComponent from './RenderComponent';
 import axios from 'axios';
+import '../Footer/Footer';
+import Footer from '../Footer/Footer';
 
-function Dashboard({ onLogout, isAuthenticated}) {
+function Dashboard({ onLogout, isAuthenticated }) {
   const [msg, setMsg] = useState("Click On Submit To get Response");
   const [load, setLoad] = useState(false);
   const [requestId, setRequestId] = useState(null);
@@ -39,10 +41,10 @@ function Dashboard({ onLogout, isAuthenticated}) {
     event.preventDefault();
 
     const allowedExtensions = ['xlsx', 'xls'];
-    
+
     if (!file1 || !file2) {
-        alert('Files Not selected!! Please select the files.')
-        return;
+      alert('Files Not selected!! Please select the files.')
+      return;
     };
 
     if (!validateFileExtension(file1, allowedExtensions)) {
@@ -60,18 +62,18 @@ function Dashboard({ onLogout, isAuthenticated}) {
     formData.append('files', file2);
     const sessionToken = localStorage.getItem('sessionToken');
     formData.append('sessionToken', sessionToken);
-    
+
     //call to upload api - express
     const response = await axios.post('http://localhost:3001/upload', formData)
-    .then(response => {
-      setRequestId(response.data);
-      setLoad(true);
-    })
-    .catch(error => {
-      console.error(error);
-      alert("Upload unsuccessfull - do it once again");
-    });
-    
+      .then(response => {
+        setRequestId(response.data);
+        setLoad(true);
+      })
+      .catch(error => {
+        console.error(error);
+        alert("Upload unsuccessfull - do it once again");
+      });
+
   };
 
   return (
@@ -93,12 +95,12 @@ function Dashboard({ onLogout, isAuthenticated}) {
           <div className="col-md-6">
             <div className="box border rounded p-3">
               <h1 className="response-field">RESPONSE TO CHECK</h1>
-              
+
               {load ? (
                 <RenderComponent requestId={requestId} callRender={callRender} />
-                  ) : (
+              ) : (
                 <div><h5>{msg}</h5></div>
-                )}
+              )}
             </div>
           </div>
         </div>
@@ -115,6 +117,7 @@ function Dashboard({ onLogout, isAuthenticated}) {
             </div>
           </div>
         </div>
+        <Footer/>
       </div>
     </div>
 
