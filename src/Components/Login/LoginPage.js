@@ -40,7 +40,7 @@ function LoginPage({ onLogin, isAuthenticated }) {
           localStorage.removeItem('sessionToken')
           alert("Session Expired!! Please Login Again.")
           window.location.reload(); 
-        }, 30000);
+        }, 500000);
         
         onLogin(sessionToken, timer);
     })
