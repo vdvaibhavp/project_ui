@@ -4,6 +4,7 @@ import Navbar from '../Navbar/Navbar';
 import footer from '../Footer/Footer';
 import axios from 'axios';
 import Footer from '../Footer/Footer';
+import robot from './Robot.jpeg';
 
 function LoginPage({ onLogin, isAuthenticated }) {
   const [username, setUsername] = useState('');
@@ -45,9 +46,14 @@ function LoginPage({ onLogin, isAuthenticated }) {
   };
 
   return (
-    <div className="container">
-      <Navbar showLogoutButton={isAuthenticated}/>
+    <>
+    <Navbar showLogoutButton={isAuthenticated}/>
+    <div className="container" >
+    
       <div class='Main-body'>
+        <div class='robo-image mt-3'>
+        <img src={robot} width="220px" id="robo" height="200px" margin="auto" />
+        </div>
       <h1 className="mb-4">Login To t3 AutomationEdge</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -72,12 +78,13 @@ function LoginPage({ onLogin, isAuthenticated }) {
           />
         </div>
         
-        <button type="submit" className="btn btn-primary">Login</button>
+        <button type="submit" className="btn btn-primary login-btn">Login</button>
       </form>
       </div>
       
       <Footer/>
     </div>
+    </>
   );
 }
 
