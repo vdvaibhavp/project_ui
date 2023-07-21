@@ -13,15 +13,15 @@ function LoginPage({ onLogin, isAuthenticated }) {
   //set timeout Id
   const [timeId, SetTimeId] = useState(null);
 
-  const runLogoutTimer = () => {
-    const timer = setTimeout(() => {
-      console.log("Timer Initiated");
-      localStorage.removeItem('sessionToken')
-      alert("Session Expired!! Please Login Again.")
-      window.location.reload(); 
-    }, 500000);
-    SetTimeId(timeId);
-  };
+  // const runLogoutTimer = () => {
+  //   const timer = setTimeout(() => {
+  //     console.log("Timer Initiated");
+  //     localStorage.removeItem('sessionToken')
+  //     alert("Session Expired!! Please Login Again.")
+  //     window.location.reload(); 
+  //   }, 500000);
+  //   SetTimeId(timeId);
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,8 +35,15 @@ function LoginPage({ onLogin, isAuthenticated }) {
         const sessionToken = response.data.sessionToken;
         localStorage.setItem('fname', response.data.userFirstName);
         localStorage.setItem('lname', response.data.userLastName); 
-        runLogoutTimer();
-        onLogin(sessionToken, timeId);
+
+        const timer = setTimeout(() => {
+          console.log("Timer Initiated");
+          localStorage.removeItem('sessionToken')
+          alert("Session Expired!! Please Login Again.")
+          window.location.reload(); 
+        }, 30000);
+        
+        onLogin(sessionToken, timer);
     })
     .catch(error => {
       console.error(error);
