@@ -5,6 +5,7 @@ import footer from '../Footer/Footer';
 import axios from 'axios';
 import Footer from '../Footer/Footer';
 import robot from './Robot.jpeg';
+import './LoginPage.css';
 
 function LoginPage({ onLogin, isAuthenticated }) {
   const [username, setUsername] = useState('');
@@ -61,7 +62,7 @@ function LoginPage({ onLogin, isAuthenticated }) {
         <div class='robo-image mt-3'>
         <img src={robot} width="220px" id="robo" height="200px" margin="auto" />
         </div>
-      <h1 className="mb-4">Login To t3 AutomationEdge</h1>
+      <h1 className="mb-4">Login</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <input

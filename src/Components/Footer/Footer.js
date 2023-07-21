@@ -5,7 +5,7 @@ import calllogo from './telephone-plus-fill.svg';
 
 function Footer() {
     return (
-
+ 
         <div className="footer fixed-bottom" >
             <div class="container">
                 <div class="row">
@@ -18,8 +18,7 @@ function Footer() {
                     </div>
 
                     <div class="col-md-3">
-                        <label>
-                            <img src={calllogo} width="20px" height="auto" /> 123456789 </label>
+                        <label> ☎ 123456789 </label>
 
                     </div>
 

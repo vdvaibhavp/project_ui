@@ -1,6 +1,6 @@
 
 .footer {
-      background-color: #e4913dd3;
+      background-color: #1b1b11fb;
       color: #ffffff;
       height: 50px;
       padding: 5px;
@@ -13,10 +13,10 @@
       background-color: #a2e2f3;
       padding-top: 83px;
       padding-bottom: 83px;
-      width: 1313px;
-      height: 665px;
-      margin-left: -100px;
-      margin-right: -100px;
+      width: 1365px;
+      height: 630px;
+      margin-left: -127px;
+      margin-right: -127px;
   }
 .footer1 {
         background-color: #000000;
@@ -53,4 +53,7 @@ form {
 }
 img#robo {
   border-radius: 100px;
+}
+.phone-symbol {
+  color: white;
 }
