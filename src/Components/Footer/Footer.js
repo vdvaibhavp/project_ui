@@ -2,22 +2,26 @@ import React from "react";
 import './Footer.css';
 import { right } from "@popperjs/core";
 import calllogo from './telephone-plus-fill.svg';
+
 function Footer() {
     return (
 
         <div className="footer fixed-bottom">
+
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <a className='text-white' href='https://valuedx.com/'>
-                                ValueDx Technology Pvt Ltd
+
+                            <a className='text-white' href='https://valuedx.com/' target="_blank"> ValueDx Technology Pvt Ltd
                             </a>
                         </div>
+
                     </div>
+
                     <div class="col-md-3">
-                        <label>
-                            <img src={calllogo} width="20px" height="auto" /> 123456789 </label>
+                        <label> ☎ 123456789 </label>
+
                     </div>
 
                     <div class="col-md-3">
@@ -30,8 +34,10 @@ function Footer() {
 
                 </div>
 
+
             </div>
         </div>
+
 
     );
 }

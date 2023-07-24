@@ -18,9 +18,11 @@ function Navbar({onLogout, showLogoutButton}) {
 
     return(
 
+
     <div class="fixed-top" style={{ display: "flex", alignItems: 'center', justifyContent: 'space-between', backgroundColor: 'black', height: 50, padding: 5 }}>
         <div>
             <img src={logoImg} width="100vh" height="30vh" alt="Logo" />
+
         </div>
         {showLogoutButton && (
             <div>

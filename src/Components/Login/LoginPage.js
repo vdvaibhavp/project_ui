@@ -7,6 +7,7 @@ import logins from './LoginSide.jpg';
 import loginb from './Login_Background.jpg';
 import Image from 'react-bootstrap/Image';
 import Footer from '../Footer/Footer';
+import robot from './Robot.jpeg';
 import './LoginPage.css';
 
 function LoginPage({ onLogin, isAuthenticated }) {
@@ -43,8 +44,16 @@ function LoginPage({ onLogin, isAuthenticated }) {
           console.log("Timer Initiated");
           localStorage.removeItem('sessionToken')
           alert("Session Expired!! Please Login Again.")
-          window.location.reload();
+          window.location.reload(); 
         }, 500000);
+        
+        onLogin(sessionToken, timer);
+    })
+    .catch(error => {
+      console.error(error);
+      alert("Re-enter the credentials correctly.");
+    });
+
 
         onLogin(sessionToken, timer);
       })

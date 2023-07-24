@@ -9,6 +9,7 @@ import Footer from '../Footer/Footer';
 import './UploadForm/Dashboard.css';
 
 
+
 function Dashboard({ onLogout, isAuthenticated }) {
   const [msg, setMsg] = useState("Click On Submit To get Response");
   const [load, setLoad] = useState(false);
@@ -149,6 +150,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
               {/* </div> */}
             </div>
 
+
             <div class="col-md-6">
               <div class="card bg-card bg-light text-black h-100">
                 <div class="card-body border rounded border-2 shadow text-center">
@@ -218,6 +220,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
         <div class="">
           <Footer />
         </div>
+
       </div>
     </>
   );

@@ -10,29 +10,50 @@
       font-size: 30px;
   }
   .Main-body {
-      background-color: #d7e6eb;
+      background-color: #a2e2f3;
       padding-top: 83px;
       padding-bottom: 83px;
-      height: 85vh;
+      width: 1365px;
+      height: 630px;
+      margin-left: -127px;
+      margin-right: -127px;
   }
 .footer1 {
         background-color: #000000;
         color: #ffffff;
         padding: 1rem;
   }
-  input {
+input {
       height: 42px;
       margin-bottom: 20px;
   }
-  form {
-      width: 50%;
+form {
+      width: 25%;
       margin: auto;
   }
+  button.btn.btn-primary.login-btn{
+   
+    margin-left: 120px;
+}
   
-  .login-page {
+.login-page {
+
       width: 100px;
       margin-left: 220px;
+      
   }
-  #languages{
+#languages{
         text-align: right;
   }
+  .robo-image {
+    margin: auto;
+    text-align-last: center;
+    margin-top: -33px;
+    margin-bottom: 23px;
+}
+img#robo {
+  border-radius: 100px;
+}
+.phone-symbol {
+  color: white;
+}
