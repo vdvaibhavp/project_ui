@@ -2,10 +2,10 @@ import React from 'react'
 import './UploadForm.css'
 function UploadForm({handleFile1Change, handleFile2Change, handleSubmitForm}) {
   return (
-    // <div class="form-container">
+    <div class="container text-center">
         <form onSubmit={handleSubmitForm}>
-            <div className="form-group">
-              <label htmlFor="file1">Upload First File : </label>              
+            <div className="form-group fw-medium">
+              <label className='border-bottom border-info border-2 mb-2' htmlFor="file1">Cashbook File : </label>              
               <input
                 type="file"
                 id="file1"
@@ -13,8 +13,8 @@ function UploadForm({handleFile1Change, handleFile2Change, handleSubmitForm}) {
                 onChange={handleFile1Change}
               />
             </div>           
-            <div className="form-group">
-              <label htmlFor="file2">Upload Second File :</label>              
+            <div className="form-group fw-medium">
+              <label className='border-bottom border-info border-2 mb-2' htmlFor="file2">GST File :</label>              
               <input
                 type="file"
                 id="file2"
@@ -22,10 +22,11 @@ function UploadForm({handleFile1Change, handleFile2Change, handleSubmitForm}) {
                 onChange={handleFile2Change}
               />
             </div>
-            <button type="submit" className="btn btn-primary btn-md">Submit</button>
+            <button type="submit" className="btn btn-primary">Submit</button>
           </form>
+          </div>
           )
-    {/* </div> */}
+   
   
 }
 

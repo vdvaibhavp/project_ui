@@ -7,6 +7,7 @@ import logins from './LoginSide.jpg';
 import loginb from './Login_Background.jpg';
 import Image from 'react-bootstrap/Image';
 import Footer from '../Footer/Footer';
+import './LoginPage.css';
 
 function LoginPage({ onLogin, isAuthenticated }) {
   const [username, setUsername] = useState('');
@@ -15,15 +16,15 @@ function LoginPage({ onLogin, isAuthenticated }) {
   //set timeout Id
   const [timeId, SetTimeId] = useState(null);
 
-  const runLogoutTimer = () => {
-    const timer = setTimeout(() => {
-      console.log("Timer Initiated");
-      localStorage.removeItem('sessionToken')
-      alert("Session Expired!! Please Login Again.")
-      window.location.reload();
-    }, 300000);
-    SetTimeId(timeId);
-  };
+  // const runLogoutTimer = () => {
+  //   const timer = setTimeout(() => {
+  //     console.log("Timer Initiated");
+  //     localStorage.removeItem('sessionToken')
+  //     alert("Session Expired!! Please Login Again.")
+  //     window.location.reload(); 
+  //   }, 500000);
+  //   SetTimeId(timeId);
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,15 +34,24 @@ function LoginPage({ onLogin, isAuthenticated }) {
         password: password,
       },
     })
-    .then(response => {
-    const sessionToken = response.data;
-    onLogin(sessionToken);
-    runLogoutTimer();
-    })
-    .catch(error => {
-      console.error(error);
-      alert("Re-enter the credentials correctly.");
-    });
+      .then(response => {
+        const sessionToken = response.data.sessionToken;
+        localStorage.setItem('fname', response.data.userFirstName);
+        localStorage.setItem('lname', response.data.userLastName);
+
+        const timer = setTimeout(() => {
+          console.log("Timer Initiated");
+          localStorage.removeItem('sessionToken')
+          alert("Session Expired!! Please Login Again.")
+          window.location.reload();
+        }, 500000);
+
+        onLogin(sessionToken, timer);
+      })
+      .catch(error => {
+        console.error(error);
+        alert("Re-enter the credentials correctly.");
+      });
   };
 
   return (
@@ -76,46 +86,46 @@ function LoginPage({ onLogin, isAuthenticated }) {
         </form>
       </div> */}
 
-      <Navbar showLogoutButton={isAuthenticated} />
-      
-      <div class="container pt-5">
-        <div class="row rounded mt-5 ">
-          <div class="col-6 col-md-6">
-            <h1 class="mb-4 pt-5">Login To T3 AutomationEdge</h1>
-            <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="username" >Username</label>
-                <input
-                  type="text"
-                  id="username"
-                  className="form-control"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  className="form-control"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <br />
-              <div class="mb-5">
-                <button type="submit" className="btn btn-primary border border-dark">Login</button>
-              </div>
-            </form>
-          </div>
-
-          <div class="col-md-6">
-            <img class="img-fluid rounded mt-4 pt-3" src={logins} width="80%" height="60%" />
+      <div className='bg-image rounded mx-auto d-block'>
+        <Navbar showLogoutButton={isAuthenticated} />
+        <div class="container pt-4">
+          <div class="row rounded mt-5 ">
+            <div class="col-6 col-md-6  border-white">
+              <h1 class="mb-4 pt-5 text-white">Login To T3 AutomationEdge</h1>
+              <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <label className='text-white' htmlFor="username" >Username</label>
+                  <input
+                    type="text"
+                    id="username"
+                    className="form-control"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </div>
+                <div className="form-group">
+                  <label className='text-white' htmlFor="password">Password</label>
+                  <input
+                    type="password"
+                    id="password"
+                    className="form-control"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+                <br/>
+                <div class="mb-5">
+                  <button type="submit" className="btn btn-primary border border-dark">Login</button>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-6">
+              <img class="img-fluid rounded mt-4 pt-3" src={logins} width="80%" height="60%" />
+            </div>
           </div>
         </div>
-      </div>
-
+        <Footer/>
+      </div>      
     </>
   );
 }
