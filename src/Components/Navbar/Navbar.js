@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import logoImg from './valuedx_logo.png';
+import "bootstrap-icons/font/bootstrap-icons.css";
+
 
 function Navbar({onLogout, showLogoutButton}) {
     const [fname, setFname] = useState(null);
@@ -16,9 +18,11 @@ function Navbar({onLogout, showLogoutButton}) {
 
     return(
 
-    <div  class="fixed-top" style={{ display: "flex", alignItems: 'center', justifyContent: 'space-between', backgroundColor: 'black', height: 50, padding: 5 }}>
+
+    <div class="fixed-top" style={{ display: "flex", alignItems: 'center', justifyContent: 'space-between', backgroundColor: 'black', height: 50, padding: 5 }}>
         <div>
-            <img src={logoImg} width="120px" height="auto" alt="Logo" />
+            <img src={logoImg} width="100vh" height="30vh" alt="Logo" />
+
         </div>
         {showLogoutButton && (
             <div>

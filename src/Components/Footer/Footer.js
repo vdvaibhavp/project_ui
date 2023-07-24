@@ -5,12 +5,14 @@ import calllogo from './telephone-plus-fill.svg';
 
 function Footer() {
     return (
- 
-        <div className="footer fixed-bottom" >
+
+        <div className="footer fixed-bottom">
+
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
+
                             <a className='text-white' href='https://valuedx.com/' target="_blank"> ValueDx Technology Pvt Ltd
                             </a>
                         </div>
@@ -32,10 +34,9 @@ function Footer() {
 
                 </div>
 
+
             </div>
         </div>
-
-
 
 
     );

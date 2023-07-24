@@ -2,22 +2,19 @@ import React from 'react'
 import './UploadForm.css'
 function UploadForm({handleFile1Change, handleFile2Change, handleSubmitForm}) {
   return (
-    <div class="form-container">
+    <div class="container text-center">
         <form onSubmit={handleSubmitForm}>
-            <div className="form-group">
-              <label htmlFor="file1">File1 To Upload : </label>
-              <br/>
+            <div className="form-group fw-medium">
+              <label className='border-bottom border-info border-2 mb-2' htmlFor="file1">Cashbook File : </label>              
               <input
                 type="file"
                 id="file1"
                 className="form-control-file"
                 onChange={handleFile1Change}
               />
-            </div>
-            <br/>
-            <div className="form-group">
-              <label htmlFor="file2">File2 To Upload :</label>
-              <br/>
+            </div>           
+            <div className="form-group fw-medium">
+              <label className='border-bottom border-info border-2 mb-2' htmlFor="file2">GST File :</label>              
               <input
                 type="file"
                 id="file2"
@@ -25,12 +22,12 @@ function UploadForm({handleFile1Change, handleFile2Change, handleSubmitForm}) {
                 onChange={handleFile2Change}
               />
             </div>
-            <br/>
-            <br/>
             <button type="submit" className="btn btn-primary">Submit</button>
           </form>
-    </div>
-  )
+          </div>
+          )
+   
+  
 }
 
 export default UploadForm

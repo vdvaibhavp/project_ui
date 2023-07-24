@@ -1,0 +1,12 @@
+.bg-image{
+    background-image: url('./Login_Background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    /* background-color: cornflowerblue; */
+    height: 100vh;
+}
+.label{
+    color: beige;
+}
