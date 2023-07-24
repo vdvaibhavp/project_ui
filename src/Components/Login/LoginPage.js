@@ -53,14 +53,6 @@ function LoginPage({ onLogin, isAuthenticated }) {
       console.error(error);
       alert("Re-enter the credentials correctly.");
     });
-
-
-        onLogin(sessionToken, timer);
-      })
-      .catch(error => {
-        console.error(error);
-        alert("Re-enter the credentials correctly.");
-      });
   };
 
   return (
