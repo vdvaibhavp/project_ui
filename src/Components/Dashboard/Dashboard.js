@@ -34,9 +34,9 @@ function Dashboard({ onLogout, isAuthenticated }) {
     setFile2(event.target.files[0]);
   };
 
-  const callRender = () => {
+  const callRender = (status) => {
     setLoad(false);
-    setMsg("Completed Successfully! Please check your mail.");
+    setMsg(status);
   }
 
   const handleSubmitForm = async (event) => {
@@ -66,7 +66,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
     formData.append('sessionToken', sessionToken);
 
     //call to upload api - express
-    const response = await axios.post('http://localhost:3001/upload', formData)
+    const response = await axios.post('/upload', formData)
       .then(response => {
         setRequestId(response.data);
         setLoad(true);

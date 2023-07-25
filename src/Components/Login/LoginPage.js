@@ -5,7 +5,7 @@ import footer from '../Footer/Footer';
 import axios from 'axios';
 import logins from './LoginSide.jpg';
 import loginb from './Login_Background.jpg';
-import Image from 'react-bootstrap/Image';
+
 import Footer from '../Footer/Footer';
 import robot from './Robot.jpeg';
 import './LoginPage.css';
@@ -13,19 +13,6 @@ import './LoginPage.css';
 function LoginPage({ onLogin, isAuthenticated }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
-  //set timeout Id
-  const [timeId, SetTimeId] = useState(null);
-
-  // const runLogoutTimer = () => {
-  //   const timer = setTimeout(() => {
-  //     console.log("Timer Initiated");
-  //     localStorage.removeItem('sessionToken')
-  //     alert("Session Expired!! Please Login Again.")
-  //     window.location.reload(); 
-  //   }, 500000);
-  //   SetTimeId(timeId);
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
