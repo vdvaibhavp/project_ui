@@ -74,13 +74,13 @@ function LoginPage({ onLogin, isAuthenticated }) {
         </form>
       </div> */}
 
-      <div className='bg-image rounded mx-auto d-block'>
+      {/* <div className='bg-image rounded mx-auto d-block'>
         <Navbar showLogoutButton={isAuthenticated} />
         <div class="container pt-4">
           <div class="row rounded mt-5 ">
             <div class="col-6 col-md-6  border-white">
-              <h1 class="mb-4 pt-5 text-white">Login To T3 AutomationEdge</h1>
               <form onSubmit={handleSubmit}>
+              <h1 class="mb-4 pt-5 text-white">Login To T3 AutomationEdge</h1>
                 <div className="form-group">
                   <label className='text-white' htmlFor="username" >Username</label>
                   <input
@@ -113,7 +113,51 @@ function LoginPage({ onLogin, isAuthenticated }) {
           </div>
         </div>
         <Footer/>
-      </div>      
+      </div>       */}
+       <div className='login-container bg-image rounded mx-auto d-block'>
+      
+      <Navbar showLogoutButton={false} />
+
+      <div className="container pt-4">
+        <div className="row rounded mt-5">
+          <div className="col-12 col-md-6 border-white">
+            <form style={{ width: '400px' }} onSubmit={handleSubmit}>
+              <h1 className="mb-4 pt-5 text-white align-center">Login To VDX Recon</h1>
+              <div className="form-group">
+                <label className='text-white' htmlFor="username">Username</label>
+                <input
+                  type="text"
+                  id="username"
+                  className="form-control"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <label className='text-white' htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  className="form-control"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <br />
+              <div className="mb-5">
+                <button type="submit" className="btn btn-primary border border-dark">Login</button>
+              </div>
+            </form>
+          </div>
+          <div className="col-md-6 d-flex">
+            <img className="img-fluid rounded mt-4 pt-3" src={logins} style={{ width: '80%', height: '80%' }} alt="Login" />
+          </div>
+        </div>
+      </div>
+
+      {/* Footer Component */}
+      <Footer />
+    </div>
     </>
   );
 }
