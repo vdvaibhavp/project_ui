@@ -26,7 +26,8 @@ function LoginPage({ onLogin, isAuthenticated }) {
         const sessionToken = response.data.sessionToken;
         localStorage.setItem('fname', response.data.userFirstName);
         localStorage.setItem('lname', response.data.userLastName);
-
+        localStorage.setItem('tenantInfo', JSON.stringify(response.data.tenant));
+        
         const timer = setTimeout(() => {
           console.log("Timer Initiated");
           localStorage.removeItem('sessionToken')

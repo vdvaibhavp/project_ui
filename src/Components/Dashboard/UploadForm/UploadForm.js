@@ -1,6 +1,10 @@
 import React from 'react'
 import './UploadForm.css'
-function UploadForm({handleFile1Change, handleFile2Change, handleSubmitForm}) {
+
+
+function UploadForm({handleFile1Change, handleFile2Change, handleSubmitForm, handleMail}) {
+ 
+
   return (
     <div class="container text-center">
         <form onSubmit={handleSubmitForm}>
@@ -22,6 +26,19 @@ function UploadForm({handleFile1Change, handleFile2Change, handleSubmitForm}) {
                 onChange={handleFile2Change}
               />
             </div>
+
+          // mail Id input
+          <div className="form-group fw-medium">
+          <label className="border-bottom border-info border-2 mb-2" htmlFor="email">
+            Email Address:
+          </label>
+          <input
+            type="text"
+            id="email"
+            className="form-control"
+            onChange={handleMail}
+          />
+        </div>
             <button type="submit" className="btn btn-primary">Submit</button>
           </form>
           </div>

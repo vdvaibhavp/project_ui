@@ -18,6 +18,8 @@ function Dashboard({ onLogout, isAuthenticated }) {
   const [file1, setFile1] = useState(null);
   const [file2, setFile2] = useState(null);
 
+  const [mailId, setMailId] = useState(null);
+
   const validateFileExtension = (file, allowedExtensions) => {
     const fileName = file.name;
     const fileExtension = fileName.split('.').pop();
@@ -34,6 +36,11 @@ function Dashboard({ onLogout, isAuthenticated }) {
     setFile2(event.target.files[0]);
   };
 
+  // Handling mail input
+
+  const handlMail = (event) => {
+      setMailId(event.target.value)
+  }
   const callRender = (status) => {
     setLoad(false);
     setMsg(status);
@@ -62,8 +69,16 @@ function Dashboard({ onLogout, isAuthenticated }) {
     const formData = new FormData();
     formData.append('files', file1);
     formData.append('files', file2);
+    
+    formData.append('mailId', mailId);
+    
     const sessionToken = localStorage.getItem('sessionToken');
+    const tenantInfo = JSON.parse(localStorage.getItem('tenantInfo'));
+
     formData.append('sessionToken', sessionToken);
+    formData.append('tenantName', tenantInfo.name);
+    formData.append('tenantOrgCode', tenantInfo.orgCode);
+
 
     //call to upload api - express
     const response = await axios.post('/upload', formData)
@@ -143,6 +158,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
                       handleFile1Change={handleFile1Change}
                       handleFile2Change={handleFile2Change}
                       handleSubmitForm={handleSubmitForm}
+                      handleMail={handlMail}
                     />
                   </div>
                 </div>
