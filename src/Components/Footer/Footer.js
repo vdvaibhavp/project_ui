@@ -1,7 +1,6 @@
 import React from "react";
 import './Footer.css';
-import { right } from "@popperjs/core";
-import calllogo from './telephone-plus-fill.svg';
+
 
 function Footer() {
     return (
