@@ -20,6 +20,10 @@ function Dashboard({ onLogout, isAuthenticated }) {
 
   const [mailId, setMailId] = useState(null);
 
+  const [req_id, setReqId] = useState(null);
+  const [file, setFile] = useState(null);
+  const [down, setDown] = useState(false);
+
   const validateFileExtension = (file, allowedExtensions) => {
     const fileName = file.name;
     const fileExtension = fileName.split('.').pop();
@@ -41,10 +45,43 @@ function Dashboard({ onLogout, isAuthenticated }) {
   const handlMail = (event) => {
       setMailId(event.target.value)
   }
-  const callRender = (status) => {
+  const callRender = (res) => {
     setLoad(false);
-    setMsg(status);
+    setMsg(res.status);
+    if (res.file_id){
+      setFile(res.file_id);
+      setReqId(res.request_id);
+      setDown(true);
+    }
   }
+
+  const downloadF = async () => {
+    const sessionToken = localStorage.getItem('sessionToken');
+    const requestData = {
+      sessionToken: sessionToken,
+      requestId: req_id,
+      fileId: file
+    };
+    await axios({
+      url: '/download', 
+      method: 'GET',
+      params : requestData,
+      responseType: 'blob',
+    })
+      .then(response => {
+      //const url = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      const fileURL = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = fileURL;
+      link.setAttribute('download', 'product_output.xlsx'); 
+      document.body.appendChild(link);
+      link.click();
+      callRender();
+      })
+      .catch(error => {
+        console.error('Error occurred while downloading the file:', error);
+      });
+  };
 
   const handleSubmitForm = async (event) => {
     event.preventDefault();
@@ -175,7 +212,9 @@ function Dashboard({ onLogout, isAuthenticated }) {
                   {load ? (
                     <RenderComponent requestId={requestId} callRender={callRender} />
                   ) : (
-                    <div><h5>{msg}</h5></div>
+                    <div><h5>{msg}</h5>
+                    {down && <button onClick={downloadF}>Download Here!</button>}
+                    </div>
                   )}
                   {/* <div class="mt-3 p-3"></div> */}
                 </div>

@@ -31,8 +31,8 @@ function RenderComponent({requestId, callRender}) {
     //   });
     await axios.get('/status', {params : requestData})
                .then(response => {
-                    console.log(response.data.status);
-                    callRender(response.data.status);
+                    callRender(response.data);
+                    
                })
                .catch(error => {
                     console.log(error);
