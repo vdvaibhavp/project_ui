@@ -3,5 +3,11 @@
      height: 30%;
 }  */
 .dashboard-container{
+   height: 100vh;
    background-color: rgb(234, 235, 240);
+   background: fixed;
+}
+.Form{
+   margin-left: 0%;
+   width: fit-content;
 }
