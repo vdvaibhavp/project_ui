@@ -39,7 +39,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
   // Handling mail input
 
   const handlMail = (event) => {
-      setMailId(event.target.value)
+    setMailId(event.target.value)
   }
   const callRender = (status) => {
     setLoad(false);
@@ -69,9 +69,9 @@ function Dashboard({ onLogout, isAuthenticated }) {
     const formData = new FormData();
     formData.append('files', file1);
     formData.append('files', file2);
-    
+
     formData.append('mailId', mailId);
-    
+
     const sessionToken = localStorage.getItem('sessionToken');
     const tenantInfo = JSON.parse(localStorage.getItem('tenantInfo'));
 
@@ -142,12 +142,11 @@ function Dashboard({ onLogout, isAuthenticated }) {
 
     // container -1
     <>
-      <div className="dashboard-container">
+      <div className="container">
         <Navbar showLogoutButton={isAuthenticated} onLogout={onLogout} />
         <div class="container mt-3 pt-5">
           <div class="row" >
             <div class="col-md-6">
-              {/* <div class="card-deck"> */}
               <div class="card bg-card bg-light text-black h-100">
                 <div class="card-body shadow border rounded border-2" >
                   <div class="form-group">
@@ -163,9 +162,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
                   </div>
                 </div>
               </div>
-              {/* </div> */}
             </div>
-
 
             <div class="col-md-6">
               <div class="card bg-card bg-light text-black h-100">
@@ -196,7 +193,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
                       <div class="form-group">
                         <div className="empty-component d-grid gap-2 col-6 mx-auto">
                           <h4 class="text fs-4 fw-semibold text-center">Click to Pay</h4>
-                          <a href="" target='_blank' class="btn btn-primary fs-6 fst-italic border">
+                          <a href="#" target='_blank' class="btn btn-primary fs-6 fst-italic border">
                             Pay
                           </a>
                         </div>
@@ -233,10 +230,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
             </div>
           </div>
         </div>
-        <div class="">
-          <Footer />
-        </div>
-
+        <Footer />
       </div>
     </>
   );
