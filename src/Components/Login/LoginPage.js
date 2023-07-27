@@ -1,99 +1,116 @@
 import React, { useState } from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import 'bootstrap/dist/css/bootstrap.css';
 import Navbar from '../Navbar/Navbar';
-import footer from '../Footer/Footer';
-import axios from 'axios';
 import Footer from '../Footer/Footer';
+import axios from 'axios';
 import robot from './Robot.jpeg';
 import './LoginPage.css';
 
-function LoginPage({ onLogin, isAuthenticated }) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+const LoginPage = ({ onLogin, isAuthenticated }) => {
 
-  //set timeout Id
-  const [timeId, SetTimeId] = useState(null);
+  // Initialize the react-hook-form
+  const { control, handleSubmit, formState: { errors } } = useForm();
 
-  // const runLogoutTimer = () => {
-  //   const timer = setTimeout(() => {
-  //     console.log("Timer Initiated");
-  //     localStorage.removeItem('sessionToken')
-  //     alert("Session Expired!! Please Login Again.")
-  //     window.location.reload(); 
-  //   }, 500000);
-  //   SetTimeId(timeId);
-  // };
+  const handleLogin = async (data) => {
+    console.log(data);
+    try {
+      const response = await axios.get('/authenticate', {
+        params: {
+          username: data.username,
+          password: data.password,
+        },
+      });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await axios.get('/authenticate', {
-      params: {
-        username: username,
-        password: password,
-      },
-    })
-    .then(response => {
-        const sessionToken = response.data.sessionToken;
-        localStorage.setItem('fname', response.data.userFirstName);
-        localStorage.setItem('lname', response.data.userLastName); 
+      const sessionToken = response.data.sessionToken;
+      localStorage.setItem('fname', response.data.userFirstName);
+      localStorage.setItem('lname', response.data.userLastName);
 
-        const timer = setTimeout(() => {
-          console.log("Timer Initiated");
-          localStorage.removeItem('sessionToken')
-          alert("Session Expired!! Please Login Again.")
-          window.location.reload(); 
-        }, 30000);
-        
-        onLogin(sessionToken, timer);
-    })
-    .catch(error => {
-      console.error(error);
-      alert("Re-enter the credentials correctly.");
-    });
+      const timer = setTimeout(() => {
+        console.log("Timer Initiated");
+        localStorage.removeItem('sessionToken');
+        alert("Session Expired!! Please Login Again.");
+        window.location.reload();
+      }, 30000);
 
+      onLogin(sessionToken, timer);
+    } catch (error) {
+      console.log('Authentication failed:', error.response.status, error.response);
+
+      alert("Re enter the credentials");
+      // Handle authentication failure here, e.g., show an error message to the user
+    }
   };
 
   return (
     <>
-    <Navbar showLogoutButton={isAuthenticated}/>
-    <div className="container" >
-    
-      <div class='Main-body'>
-        <div class='robo-image mt-3'>
-        <img src={robot} width="220px" id="robo" height="200px" margin="auto" />
+      <Navbar showLogoutButton={isAuthenticated} />
+      <div className="container">
+        <div className='Main-body'>
+          <div className='robo-image'>
+            <img src={robot} width="220px" id="robo" height="200px" margin="auto" alt="Robot" />
+          </div>
+          <h1 className="mb-4">Login</h1>
+          <form onSubmit={handleSubmit(handleLogin)}>
+            <div className="form-group">
+              <Controller
+                name="username"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <input
+                    type="text"
+                    id="username"
+                    className={`form-control ${errors.username ? 'is-invalid' : ''}`}
+                    {...field}
+                    placeholder='Enter Username'
+                  />
+                )}
+                rules={{ required: 'Please enter a username.' }}
+              />
+              {/* Display error message if the username field is invalid */}
+              {errors.username && (
+                <div className="invalid-feedback">{errors.username.message}</div>
+              )}
+            </div>
+
+            <div className="form-group">
+              <Controller
+                name="password"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <input
+                    type="password"
+                    id="password"
+                    className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+                    {...field}
+                    placeholder="Enter Password"
+                  />
+                )}
+                rules={{
+                  required: 'Please enter a password.',
+                  pattern: {
+                    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$&]).{6,20}$/,
+                    message: 'Password must be 6 to 20 characters long and include at least one uppercase letter, one lowercase letter, one digit, and one of the allowed special characters: !@#$&',
+                  
+                  },
+                }}
+              />
+              {errors.password && (
+                <div className="invalid-feedback">{errors.password.message}</div>
+              )}
+            </div>
+
+
+            <button type="submit" className="btn btn-primary login-btn">Login</button>
+          </form>
         </div>
-      <h1 className="mb-4">Login</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <input
-            type="text"
-            id="username"
-            className="form-control"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder='Enter Username'
-          />
-        </div>
-        
-        <div className="form-group">
-          <input
-            type="password"
-            id="password"
-            className="form-control"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder='Enter Password'
-          />
-        </div>
-        
-        <button type="submit" className="btn btn-primary login-btn">Login</button>
-      </form>
+
+        <Footer />
       </div>
-      
-      <Footer/>
-    </div>
     </>
   );
-}
+};
 
 export default LoginPage;
