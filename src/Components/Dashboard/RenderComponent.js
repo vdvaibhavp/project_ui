@@ -29,7 +29,7 @@ function RenderComponent({requestId, callRender}) {
     //   .catch(error => {
     //     console.error('Error occurred while downloading the file:', error);
     //   });
-    await axios.get('/status', {params : requestData})
+    await axios.get('http://localhost:3001/status', {params : requestData})
                .then(response => {
                     callRender(response.data);
                     

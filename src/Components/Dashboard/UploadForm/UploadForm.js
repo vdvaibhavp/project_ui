@@ -7,10 +7,12 @@ function UploadForm({ handleFile1Change, handleFile2Change, handleSubmitForm, ha
 
   return (
     <div class="container">
+      <form class="Form" onSubmit={handleSubmitForm}>
       <div class="row">
         {/* column for file field */}
+        
         <div class="col-md-6 ">
-          <form class="Form" onSubmit={handleSubmitForm}>
+          
             <label className='border-bottom border-2' htmlFor="file1">Cashbook File: </label>
             <input
               type="file"
@@ -25,7 +27,7 @@ function UploadForm({ handleFile1Change, handleFile2Change, handleSubmitForm, ha
               className="form-control-file"
               onChange={handleFile2Change}
             />
-          </form>
+          
         </div>
         {/* </div> */}
         {/* mail Id input */}
@@ -46,7 +48,9 @@ function UploadForm({ handleFile1Change, handleFile2Change, handleSubmitForm, ha
             <button type="submit" className="btn btn-primary btn-block fs-6">Submit</button>
           </div>
         </div>
+        
       </div>
+      </form>
     </div >
   )
 
