@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-//import 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js';
 import Navbar from '../Navbar/Navbar';
 import UploadForm from './UploadForm/UploadForm';
 import RenderComponent from './RenderComponent';
@@ -69,7 +68,6 @@ function Dashboard({ onLogout, isAuthenticated }) {
       responseType: 'blob',
     })
       .then(response => {
-      //const url = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
       const fileURL = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = fileURL;
@@ -79,7 +77,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
       callRender();
       })
       .catch(error => {
-        console.error('Error occurred while downloading the file:', error);
+        alert('Error occurred while downloading the file! Please try again.');
       });
   };
 
@@ -124,60 +122,12 @@ function Dashboard({ onLogout, isAuthenticated }) {
         setLoad(true);
       })
       .catch(error => {
-        console.error(error);
         alert("Upload unsuccessfull - do it once again");
       });
 
   };
 
   return (
-    // <div className="dashboard-container bg-grey p-4">
-    //   <Navbar showLogoutButton={isAuthenticated} onLogout={onLogout} />
-
-    //   <div className="container">
-    //     <div className="row">
-    //       <div className="col-md-6">
-    //         <div className="box border rounded p-3">
-    //           <UploadForm
-    //             handleFile1Change={handleFile1Change}
-    //             handleFile2Change={handleFile2Change}
-    //             handleSubmitForm={handleSubmitForm}
-    //           />
-    //         </div>
-    //       </div>
-
-    //       <div className="col-md-6">
-    //         <div className="box border rounded p-3">
-    //           <h1 className="response-field">RESPONSE TO CHECK</h1>
-
-    //           {load ? (
-    //             <RenderComponent requestId={requestId} callRender={callRender} />
-    //               ) : (
-    //             <div><h5>{msg}</h5></div>
-    //             )}
-    //         </div>
-    //       </div>
-    //     </div>
-    //     </div>
-
-    //     <div className="container">
-    //     <div className="row">
-    //       <div className="col-md-6">
-    //         <div className="box border rounded p-3">
-    //           <div className="empty-component">Recharge Here</div>
-    //         </div>
-    //       </div>
-    //       <div className="col-md-6">
-    //         <div className="box border rounded p-3">
-    //           <div className="empty-component">Row Count and Available credits</div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <Footer/>
-    // </div>
-
-    // container -1
     <>
       <div className="container">
         <Navbar showLogoutButton={isAuthenticated} onLogout={onLogout} />
@@ -213,14 +163,11 @@ function Dashboard({ onLogout, isAuthenticated }) {
                     {down && <button onClick={downloadF}>Download Here!</button>}
                     </div>
                   )}
-                  {/* <div class="mt-3 p-3"></div> */}
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        {/* container -2 */}
 
         <div class="container pt-3">
           <div class="row">

@@ -13,17 +13,14 @@ function App() {
     setSessionToken(token);
     setIsAuthenticated(true);
     setLogoutTimeId(timeId);
-    console.log(timeId);
   };
 
   // Function to handle logout
   const handleLogout = () => {
-    console.log(logoutTimeId);
     localStorage.removeItem('sessionToken');
     localStorage.clear();
     setSessionToken('');
     setIsAuthenticated(false);
-    console.log(logoutTimeId);
     clearTimeout(logoutTimeId);
     
   };

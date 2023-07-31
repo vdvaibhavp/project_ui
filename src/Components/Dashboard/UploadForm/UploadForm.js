@@ -9,7 +9,6 @@ function UploadForm({ handleFile1Change, handleFile2Change, handleSubmitForm, ha
     <div class="container">
       <form class="Form" onSubmit={handleSubmitForm}>
       <div class="row">
-        {/* column for file field */}
         
         <div class="col-md-6 ">
           
@@ -29,9 +28,6 @@ function UploadForm({ handleFile1Change, handleFile2Change, handleSubmitForm, ha
             />
           
         </div>
-        {/* </div> */}
-        {/* mail Id input */}
-        {/* column for email field */}
         <div class="col-md-6">
           <label className="border-bottom border-2 mb-2" htmlFor="email">
             Email Address:
