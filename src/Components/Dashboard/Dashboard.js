@@ -63,7 +63,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
       fileId: file
     };
     await axios({
-      url: 'http://localhost:3001/download', 
+      url: '/download', 
       method: 'GET',
       params : requestData,
       responseType: 'blob',
@@ -118,7 +118,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
 
 
     //call to upload api - express
-    const response = await axios.post('http://localhost:3001/upload', formData)
+    const response = await axios.post('/upload', formData)
       .then(response => {
         setRequestId(response.data);
         setLoad(true);

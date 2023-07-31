@@ -11,13 +11,13 @@ function Footer() {
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <a className='text-white' href='https://valuedx.com/' target="_blank"> ValueDx Technology Pvt Ltd
+                            <a className='text-white' href='https://valuedx.com/' target="_blank"> ValueDx Technologies Pvt Ltd
                             </a>
                         </div>
                     </div>
 
                     <div class="col-md-3">
-                        <label> ☎ 123456789 </label>
+                        <label> ☎ 8857861943 </label>
                     </div>
 
                     <div class="col-md-3">
