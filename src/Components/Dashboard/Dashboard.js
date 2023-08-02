@@ -6,6 +6,7 @@ import RenderComponent from './RenderComponent';
 import axios from 'axios';
 import Footer from '../Footer/Footer';
 import './UploadForm/Dashboard.css';
+import Cookies from 'js-cookie';
 
 
 
@@ -55,7 +56,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
   }
 
   const downloadF = async () => {
-    const sessionToken = localStorage.getItem('sessionToken');
+    const sessionToken = Cookies.get('sessionToken');
     const requestData = {
       sessionToken: sessionToken,
       requestId: req_id,
@@ -107,8 +108,8 @@ function Dashboard({ onLogout, isAuthenticated }) {
 
     formData.append('mailId', mailId);
 
-    const sessionToken = localStorage.getItem('sessionToken');
-    const tenantInfo = JSON.parse(localStorage.getItem('tenantInfo'));
+    const sessionToken = Cookies.get('sessionToken');
+    const tenantInfo = JSON.parse(Cookies.get('tenantInfo'));
 
     formData.append('sessionToken', sessionToken);
     formData.append('tenantName', tenantInfo.name);
