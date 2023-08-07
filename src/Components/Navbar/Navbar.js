@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import logoImg from './valuedx_logo.png';
 import "bootstrap-icons/font/bootstrap-icons.css";
+import react from 'react';
+import Cookies from "js-cookie";
+
 
 
 function Navbar({onLogout, showLogoutButton}) {
@@ -8,8 +11,8 @@ function Navbar({onLogout, showLogoutButton}) {
     const [lname, setLname] = useState(null);
    
     useEffect(() => {
-        const fname_user = localStorage.getItem('fname');
-        const lname_user = localStorage.getItem('lname');
+        const fname_user=Cookies.get('fname')
+        const lname_user=Cookies.get('lname')
         if (fname_user || lname_user) {
           setFname(fname_user);
           setLname(lname_user);
