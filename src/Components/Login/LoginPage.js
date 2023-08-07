@@ -69,7 +69,9 @@ function LoginPage({ onLogin, isAuthenticated }) {
               </div>
               <br />
               <div className="mb-5">
-                <button type="submit" className="btn btn-primary border border-dark">Login</button>
+                <button type="submit" className="btn btn-primary border border-dark me-3">Login</button>
+                <button type="submit" className="btn btn-primary border border-dark">Sign In</button>
+
               </div>
             </form>
           </div>
