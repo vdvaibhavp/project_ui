@@ -1,9 +1,11 @@
 import React from 'react'
 import './UploadForm.css'
+import {useTranslation} from 'react-i18next';
+import i18next from 'i18next';
 
 
 function UploadForm({ handleFile1Change, handleFile2Change, handleSubmitForm, handleMail }) {
-
+  const {t}=useTranslation();
 
   return (
     <div class="container">
@@ -12,14 +14,15 @@ function UploadForm({ handleFile1Change, handleFile2Change, handleSubmitForm, ha
         
         <div class="col-md-6 ">
           
-            <label className='border-bottom border-2' htmlFor="file1">Cashbook File: </label>
+            <label className='border-bottom border-2' htmlFor="file1">{t('Cashbook File')}: </label>
+
             <input
               type="file"
               id="file1"
               className="form-control-file"
               onChange={handleFile1Change}
             />
-            <label className='border-bottom border-2' htmlFor="file2">GST File:</label>
+            <label className='border-bottom border-2' htmlFor="file2">{t('GST File')}:</label>
             <input
               type="file"
               id="file2"
@@ -30,7 +33,7 @@ function UploadForm({ handleFile1Change, handleFile2Change, handleSubmitForm, ha
         </div>
         <div class="col-md-6">
           <label className="border-bottom border-2 mb-2" htmlFor="email">
-            Email Address:
+            {t('Email Address')}:
           </label>
           <input
             type="text"
@@ -41,7 +44,7 @@ function UploadForm({ handleFile1Change, handleFile2Change, handleSubmitForm, ha
         </div>
         <div class="row">
           <div class="col text-center">
-            <button type="submit" className="btn btn-primary btn-block fs-6">Submit</button>
+            <button type="submit" className="btn btn-primary btn-block fs-6">{t('Submit')}</button>
           </div>
         </div>
         
