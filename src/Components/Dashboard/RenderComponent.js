@@ -21,11 +21,10 @@ function RenderComponent({requestId, callRender}) {
                     
                })
                .catch(error => {
-                    console.log(error);
                     callRender();
                });
     
-  }
+  };
   useEffect(() => {
     getStatus();
   }, []);

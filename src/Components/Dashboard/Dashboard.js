@@ -58,7 +58,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
       setReqId(res.request_id);
       setDown(true);
     }
-  }
+  };
 
   const downloadF = async () => {
     const sessionToken = Cookies.get('sessionToken');
@@ -72,18 +72,16 @@ function Dashboard({ onLogout, isAuthenticated }) {
       method: 'GET',
       params : requestData,
       responseType: 'blob',
-    })
-      .then(response => {
+    }).then(response => {
       const fileURL = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = fileURL;
       link.setAttribute('download', 'product_output.xlsx'); 
       document.body.appendChild(link);
       link.click();
-      callRender();
-      })
-      .catch(error => {
-        alert('Error occurred while downloading the file! Please try again.');
+      }).catch(error => {
+        console.log("this is error -",error);
+        alert('Error occurred while downloading the file! Please try again.', error);
       });
   };
 
