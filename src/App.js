@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import LoginPage from './Components/Login/LoginPage';
 import Dashboard from './Components/Dashboard/Dashboard';
+import RegistrationForm from './Components/Registration/RegistrationForm';
 import Cookies from 'js-cookie';
 import { useCookies } from "react-cookie";
 
@@ -46,7 +47,8 @@ function App() {
       return <Dashboard isAuthenticated={isAuthenticated} onLogout={handleLogout} />;
     } else {
       // User is not logged in, render login page
-      return <LoginPage  isAuthenticated={isAuthenticated} onLogin={handleLogin} />;
+       //return <LoginPage  isAuthenticated={isAuthenticated} onLogin={handleLogin} />;
+      return <RegistrationForm />
     }
   };
 
@@ -54,7 +56,6 @@ function App() {
     <div className="App">
       {renderContent()}
     </div>
-
     
   );
 }
