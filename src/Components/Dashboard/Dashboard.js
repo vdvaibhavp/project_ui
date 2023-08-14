@@ -24,6 +24,8 @@ function Dashboard({ onLogout, isAuthenticated }) {
   const [file, setFile] = useState(null);
   const [down, setDown] = useState(false);
 
+  const [row_count, setRowCount] = useState(0);
+
   const validateFileExtension = (file, allowedExtensions) => {
     const fileName = file.name;
     const fileExtension = fileName.split('.').pop();
@@ -53,6 +55,8 @@ function Dashboard({ onLogout, isAuthenticated }) {
       setReqId(res.request_id);
       setDown(true);
     }
+    setRowCount(res.row_count);
+
   };
 
   const downloadF = async () => {
@@ -196,7 +200,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
                     <div class="card bg-card bg-light text-black h-100">
                       <div class="card-body text-center card-body shadow border rounded border-2" style={{ fontSize: 25 }}>
                         <p class="card-text  fs-4 fw-semibold">Total Rows Count</p>
-                        <div class="border border-2">*Number</div>
+                        <div class="border border-2">{row_count}</div>
                       </div>
                     </div>
                   </div>
