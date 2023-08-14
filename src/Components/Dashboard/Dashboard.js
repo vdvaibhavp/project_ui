@@ -7,10 +7,14 @@ import axios from 'axios';
 import Footer from '../Footer/Footer';
 import './UploadForm/Dashboard.css';
 import Cookies from 'js-cookie';
-
+import {useTranslation} from 'react-i18next';
+import i18next from 'i18next';
+import Languageoption from '../language_dropdown';
 
 
 function Dashboard({ onLogout, isAuthenticated }) {
+  
+
   const [msg, setMsg] = useState("Click On Submit To get Response");
   const [load, setLoad] = useState(false);
   const [requestId, setRequestId] = useState(null);
@@ -23,6 +27,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
   const [req_id, setReqId] = useState(null);
   const [file, setFile] = useState(null);
   const [down, setDown] = useState(false);
+  const {t}=useTranslation();
 
   const validateFileExtension = (file, allowedExtensions) => {
     const fileName = file.name;
@@ -129,7 +134,9 @@ function Dashboard({ onLogout, isAuthenticated }) {
   return (
     <>
       <div className="container">
-        <Navbar showLogoutButton={isAuthenticated} onLogout={onLogout} />
+        
+        <Navbar showLogoutButton={isAuthenticated} onLogout={onLogout}/>
+        
         <div class="container mt-3 pt-5">
           <div class="row" >
             <div class="col-md-6">
@@ -137,7 +144,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
                 <div class="card-body shadow border rounded border-2" >
                   <div class="form-group">
                     <div class="border-bottom border-info fs-4 fw-semibold mb-3 text-center">
-                      Upload The Files
+                      <h4>{t('Upload The Files')}</h4>
                     </div>
                     <UploadForm
                       handleFile1Change={handleFile1Change}
@@ -153,12 +160,12 @@ function Dashboard({ onLogout, isAuthenticated }) {
             <div class="col-md-6">
               <div class="card bg-card bg-light text-black h-100">
                 <div class="card-body border rounded border-2 shadow text-center">
-                  <h4 className="response-field text-center border-bottom border-info">Check Your Response</h4>
+                  <h4 className="response-field text-center border-bottom border-info">{t('Check Your Response')}</h4>
                   <div class="mt-5 p-4"></div>
                   {load ? (
                     <RenderComponent requestId={requestId} callRender={callRender} />
                   ) : (
-                    <div><h5>{msg}</h5>
+                    <div><h5>{t('Click On Submit To get Response')}</h5>
                     {down && <button onClick={downloadF}>Download Here!</button>}
                     </div>
                   )}
@@ -177,9 +184,9 @@ function Dashboard({ onLogout, isAuthenticated }) {
                     <div class="card-body card-body shadow border rounded border-2">
                       <div class="form-group">
                         <div className="empty-component d-grid gap-2 col-6 mx-auto">
-                          <h4 class="text fs-4 fw-semibold text-center">Click to Pay</h4>
+                          <h4 class="text fs-4 fw-semibold text-center">{t('Click to Pay')}</h4>
                           <a href="#" target='_blank' class="btn btn-primary fs-6 fst-italic border">
-                            Pay
+                          {t('Pay')}
                           </a>
                         </div>
                       </div>
@@ -195,8 +202,8 @@ function Dashboard({ onLogout, isAuthenticated }) {
                   <div class="card-deck">
                     <div class="card bg-card bg-light text-black h-100">
                       <div class="card-body text-center card-body shadow border rounded border-2" style={{ fontSize: 25 }}>
-                        <p class="card-text  fs-4 fw-semibold">Total Rows Count</p>
-                        <div class="border border-2">*Number</div>
+                        <p class="card-text  fs-4 fw-semibold">{t('Total Rows Count')}</p>
+                        <div class="border border-2">{t('*Number')}</div>
                       </div>
                     </div>
                   </div>
@@ -205,8 +212,8 @@ function Dashboard({ onLogout, isAuthenticated }) {
                   <div class="card-deck">
                     <div class="card bg-card bg-light text-black h-100">
                       <div class="card-body text-center card-body shadow border rounded border-2" style={{ fontSize: 25 }}>
-                        <p class="card-text  fs-4 fw-semibold">Total Credit Left</p>
-                        <div class="border border-2" >*Number</div>
+                        <p class="card-text  fs-4 fw-semibold">{t('Total Credit Left')}</p>
+                        <div class="border border-2" >{t('*Number')}</div>
                       </div>
                     </div>
                   </div>
