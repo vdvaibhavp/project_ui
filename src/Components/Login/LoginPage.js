@@ -12,8 +12,8 @@ function LoginPage({ onLogin, isAuthenticated }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [cookies, setCookie] = useCookies(["user"]);
-
-  const handleSubmit = async (e) => {
+  
+   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await axios.get('/authenticate', {
       params: {
@@ -81,7 +81,7 @@ function LoginPage({ onLogin, isAuthenticated }) {
               <br />
               <div className="mb-5">
                 <button type="submit" className="btn btn-primary border border-dark me-3">Login</button>
-                <button type="submit" className="btn btn-primary border border-dark">Sign Up</button>
+                <button className="btn btn-primary border border-dark">Sign Up</button>
 
               </div>
             </form>

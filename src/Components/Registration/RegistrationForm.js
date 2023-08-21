@@ -7,7 +7,7 @@ import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import '../Footer/Footer';
 
-function RegistrationForm  ( onLogout, isAuthenticated) {
+function RegistrationForm  () {
   const {
     register,
     handleSubmit,

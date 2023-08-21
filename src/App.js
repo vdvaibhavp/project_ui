@@ -48,7 +48,7 @@ function App() {
     } else {
       // User is not logged in, render login page
        return <LoginPage  isAuthenticated={isAuthenticated} onLogin={handleLogin} />;
-      // return <RegistrationForm />
+      //return <RegistrationForm />
     }
   };
 
