@@ -5,10 +5,13 @@ import axios from 'axios';
 import logins from './LoginSide.jpg';
 import Footer from '../Footer/Footer';
 import './LoginPage.css';
+import { useCookies } from "react-cookie";
+import Cookies from 'js-cookie';
 
 function LoginPage({ onLogin, isAuthenticated }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [cookies, setCookie] = useCookies(["user"]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,16 +23,24 @@ function LoginPage({ onLogin, isAuthenticated }) {
     })
       .then(response => {
         const sessionToken = response.data.sessionToken;
-        localStorage.setItem('fname', response.data.userFirstName);
-        localStorage.setItem('lname', response.data.userLastName);
-        localStorage.setItem('tenantInfo', JSON.stringify(response.data.tenant));
-        
+        // localStorage.setItem('fname', response.data.userFirstName);
+        // localStorage.setItem('lname', response.data.userLastName);
+        setCookie("fname", response.data.userFirstName, { path: "/" });
+        setCookie("lname", response.data.userLastName, { path: "/" });
+        //setCookie("sessionToken",response.data.sessionToken,{ path: "/" });
+        // setCookie("sessionToken", sessionToken, { path: "/" });
+        //setCookies("tenantInfo", JSON.stringify(response.data.tenant));
+        //localStorage.setItem('tenantInfo', JSON.stringify(response.data.tenant));
+        setCookie("tenantInfo",response.data.tenant,{ path: "/" });
+
+
         const timer = setTimeout(() => {
-          localStorage.removeItem('sessionToken')
+          Cookies.remove('sessionToken')
           alert("Session Expired!! Please Login Again.")
           window.location.reload(); 
         }, 300000);
         onLogin(sessionToken, timer);
+       
     })
     .catch(error => {
       alert("False Credential! Re-enter the credentials correctly.");
@@ -69,7 +80,9 @@ function LoginPage({ onLogin, isAuthenticated }) {
               </div>
               <br />
               <div className="mb-5">
-                <button type="submit" className="btn btn-primary border border-dark">Login</button>
+                <button type="submit" className="btn btn-primary border border-dark me-3">Login</button>
+                <button type="submit" className="btn btn-primary border border-dark">Sign In</button>
+
               </div>
             </form>
           </div>
