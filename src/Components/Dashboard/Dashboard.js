@@ -74,7 +74,6 @@ function Dashboard({ onLogout, isAuthenticated }) {
       link.setAttribute('download', 'product_output.xlsx'); 
       document.body.appendChild(link);
       link.click();
-      callRender();
       })
       .catch(error => {
         alert('Error occurred while downloading the file! Please try again.');
