@@ -47,8 +47,8 @@ function App() {
       return <Dashboard isAuthenticated={isAuthenticated} onLogout={handleLogout} />;
     } else {
       // User is not logged in, render login page
-       //return <LoginPage  isAuthenticated={isAuthenticated} onLogin={handleLogin} />;
-      return <RegistrationForm />
+       return <LoginPage  isAuthenticated={isAuthenticated} onLogin={handleLogin} />;
+      //return <RegistrationForm />
     }
   };
 
