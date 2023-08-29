@@ -88,6 +88,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
       setDown(true);
     }
     setRowCount(res.row_count);
+    
 
     setTotalCredit(res.total_credit);
 
@@ -237,7 +238,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
                       <div class="card-body text-center card-body shadow border rounded border-2" style={{ fontSize: 25 }}>
 
                         <p class="card-text  fs-4 fw-semibold">{t('Total Rows Count')}</p>
-                        <div class="border border-2">{t('{row_count}')}</div>
+                        <div class="border border-2">{row_count}</div>
 
                       </div>
                     </div>
@@ -249,7 +250,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
                       <div class="card-body text-center card-body shadow border rounded border-2" style={{ fontSize: 25 }}>
 
                         <p class="card-text  fs-4 fw-semibold">{t('Total Credit Left')}</p>
-                        <div class="border border-2" >{t('*Number')}</div>
+                        <div class="border border-2" >{total_credit}</div>
                       </div>
                     </div>
                   </div>
