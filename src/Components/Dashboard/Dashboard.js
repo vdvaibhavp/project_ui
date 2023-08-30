@@ -31,39 +31,14 @@ function Dashboard({ onLogout, isAuthenticated }) {
   const [down, setDown] = useState(false);
 
   const [total_credit,setTotalCredit]=useState(0);
-
-  const {t}=useTranslation();
-
   const [row_count, setRowCount] = useState(0);
-
+  const {t}=useTranslation();
 
   const validateFileExtension = (file, allowedExtensions) => {
     const fileName = file.name;
     const fileExtension = fileName.split('.').pop();
     return allowedExtensions.includes(fileExtension);
   };
-
-  //send data into postgres database
-  // const sendDataToServer = async () => {
-  //   const dataToSend = 'Hello, PostgreSQL!';
-    
-  //   try {
-  //     const response = await fetch('/api/insert', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ data: dataToSend }),
-  //     });
-  
-  //     const responseData = await response.json();
-  //     console.log('Data inserted:', responseData);
-  //   } catch (error) {
-  //     console.error('Error sending data:', error);
-  //   }
-  // };
- 
-
   // Handling file1 extension and file name
   const handleFile1Change = (event) => {
     setFile1(event.target.files[0]);
@@ -88,7 +63,6 @@ function Dashboard({ onLogout, isAuthenticated }) {
       setDown(true);
     }
     setRowCount(res.row_count);
-
     setTotalCredit(res.total_credit);
 
   };
@@ -236,7 +210,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
                       <div class="card-body text-center card-body shadow border rounded border-2" style={{ fontSize: 25 }}>
 
                         <p class="card-text  fs-4 fw-semibold">{t('Total Rows Count')}</p>
-                        <div class="border border-2">{t('{row_count}')}</div>
+                        <div class="border border-2">{row_count}</div>
 
                       </div>
                     </div>
@@ -248,7 +222,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
                       <div class="card-body text-center card-body shadow border rounded border-2" style={{ fontSize: 25 }}>
 
                         <p class="card-text  fs-4 fw-semibold">{t('Total Credit Left')}</p>
-                        <div class="border border-2" >{t('*Number')}</div>
+                        <div class="border border-2" >{total_credit}</div>
                       </div>
                     </div>
                   </div>
