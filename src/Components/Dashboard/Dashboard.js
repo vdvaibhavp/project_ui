@@ -31,39 +31,14 @@ function Dashboard({ onLogout, isAuthenticated }) {
   const [down, setDown] = useState(false);
 
   const [total_credit,setTotalCredit]=useState(0);
-
-  const {t}=useTranslation();
-
   const [row_count, setRowCount] = useState(0);
-
+  const {t}=useTranslation();
 
   const validateFileExtension = (file, allowedExtensions) => {
     const fileName = file.name;
     const fileExtension = fileName.split('.').pop();
     return allowedExtensions.includes(fileExtension);
   };
-
-  //send data into postgres database
-  // const sendDataToServer = async () => {
-  //   const dataToSend = 'Hello, PostgreSQL!';
-    
-  //   try {
-  //     const response = await fetch('/api/insert', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ data: dataToSend }),
-  //     });
-  
-  //     const responseData = await response.json();
-  //     console.log('Data inserted:', responseData);
-  //   } catch (error) {
-  //     console.error('Error sending data:', error);
-  //   }
-  // };
- 
-
   // Handling file1 extension and file name
   const handleFile1Change = (event) => {
     setFile1(event.target.files[0]);
@@ -88,8 +63,6 @@ function Dashboard({ onLogout, isAuthenticated }) {
       setDown(true);
     }
     setRowCount(res.row_count);
-    
-
     setTotalCredit(res.total_credit);
 
   };
@@ -114,7 +87,6 @@ function Dashboard({ onLogout, isAuthenticated }) {
       document.body.appendChild(link);
       link.click();
       }).catch(error => {
-        console.log("this is error -",error);
         alert('Error occurred while downloading the file! Please try again.', error);
       });
   };
