@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import LoginPage from './Components/Login/LoginPage';
 import Dashboard from './Components/Dashboard/Dashboard';
 import RegistrationForm from './Components/Registration/RegistrationForm';
 import Cookies from 'js-cookie';
 import { useCookies } from "react-cookie";
+
+
 
 function App() {
   const [sessionToken, setSessionToken] = useState('');
@@ -54,7 +57,12 @@ function App() {
 
   return (
     <div className="App">
-      {renderContent()}
+      <Router>
+        <Routes>
+          <Route path="/" element={renderContent()} />
+          <Route path="/registration" element={<RegistrationForm />} />
+        </Routes>
+      </Router>
     </div>
     
   );

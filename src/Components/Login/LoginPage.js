@@ -8,6 +8,8 @@ import './LoginPage.css';
 import { useCookies } from "react-cookie";
 import Cookies from 'js-cookie';
 
+import { Link } from 'react-router-dom';
+
 function LoginPage({ onLogin, isAuthenticated }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -81,7 +83,8 @@ function LoginPage({ onLogin, isAuthenticated }) {
               <br />
               <div className="mb-5">
                 <button type="submit" className="btn btn-primary border border-dark me-3">Login</button>
-                <button className="btn btn-primary border border-dark">Sign Up</button>
+
+                <Link to= "/registration" className="btn btn-primary border border-dark">Sign Up</Link>
 
               </div>
             </form>
