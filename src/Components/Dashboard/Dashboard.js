@@ -39,6 +39,15 @@ function Dashboard({ onLogout, isAuthenticated }) {
     const fileExtension = fileName.split('.').pop();
     return allowedExtensions.includes(fileExtension);
   };
+
+  const validateEmail = (email) => {
+    // Regular expression for a simple email validation
+    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    console.log(email);
+    console.log(emailRegex.test(email));
+    return !emailRegex.test(email);
+  };
+
   // Handling file1 extension and file name
   const handleFile1Change = (event) => {
     setFile1(event.target.files[0]);
@@ -54,6 +63,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
   const handlMail = (event) => {
     setMailId(event.target.value)
   }
+  
   const callRender = (res) => {
     setLoad(false);
     setMsg(res.status);
@@ -110,6 +120,17 @@ function Dashboard({ onLogout, isAuthenticated }) {
       alert('File2 has an invalid extension!');
       return;
     };
+
+    if (!mailId) {
+      alert('Please enter an email address.');
+      return;
+    }
+    
+    if (validateEmail(mailId)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
 
     const formData = new FormData();
     formData.append('files', file1);
