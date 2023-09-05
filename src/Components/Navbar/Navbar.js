@@ -34,7 +34,7 @@ function Navbar({onLogout, showLogoutButton}) {
         {showLogoutButton && (
             <div>
                 <span style={{ color: 'white', marginRight: '5px' }}>{fname} {lname}</span>
-                <button className="btn btn-primary my-2 my-lg-0" type="button" onClick={onLogout}>{t('Log Out')}</button>
+                <button className="btn btn-primary btn-sm" type="button" onClick={onLogout}>{t('Log Out')}</button>
             </div>
         )}
     </div>
