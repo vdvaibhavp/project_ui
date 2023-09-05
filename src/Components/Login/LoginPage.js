@@ -22,11 +22,13 @@ function LoginPage({ onLogin, isAuthenticated }) {
       },
     })
       .then(response => {
+        console.log(response)
         const sessionToken = response.data.sessionToken;
         // localStorage.setItem('fname', response.data.userFirstName);
         // localStorage.setItem('lname', response.data.userLastName);
         setCookie("fname", response.data.userFirstName, { path: "/" });
         setCookie("lname", response.data.userLastName, { path: "/" });
+        setCookie("registerid",response.data.registerid, {path: "/" });
         //setCookie("sessionToken",response.data.sessionToken,{ path: "/" });
         // setCookie("sessionToken", sessionToken, { path: "/" });
         //setCookies("tenantInfo", JSON.stringify(response.data.tenant));

@@ -20,7 +20,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
   const [msg, setMsg] = useState("Click On Submit To get Response");
   const [load, setLoad] = useState(false);
   const [requestId, setRequestId] = useState(null);
-
+  const registerid = Cookies.get("registerid");
   const [file1, setFile1] = useState(null);
   const [file2, setFile2] = useState(null);
 
@@ -31,39 +31,14 @@ function Dashboard({ onLogout, isAuthenticated }) {
   const [down, setDown] = useState(false);
 
   const [total_credit,setTotalCredit]=useState(0);
-
-  const {t}=useTranslation();
-
   const [row_count, setRowCount] = useState(0);
-
+  const {t}=useTranslation();
 
   const validateFileExtension = (file, allowedExtensions) => {
     const fileName = file.name;
     const fileExtension = fileName.split('.').pop();
     return allowedExtensions.includes(fileExtension);
   };
-
-  //send data into postgres database
-  // const sendDataToServer = async () => {
-  //   const dataToSend = 'Hello, PostgreSQL!';
-    
-  //   try {
-  //     const response = await fetch('/api/insert', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ data: dataToSend }),
-  //     });
-  
-  //     const responseData = await response.json();
-  //     console.log('Data inserted:', responseData);
-  //   } catch (error) {
-  //     console.error('Error sending data:', error);
-  //   }
-  // };
- 
-
   // Handling file1 extension and file name
   const handleFile1Change = (event) => {
     setFile1(event.target.files[0]);
@@ -80,6 +55,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
     setMailId(event.target.value)
   }
   const callRender = (res) => {
+    console.log("set load false");
     setLoad(false);
     setMsg(res.status);
     if (res.file_id){
@@ -88,7 +64,6 @@ function Dashboard({ onLogout, isAuthenticated }) {
       setDown(true);
     }
     setRowCount(res.row_count);
-
     setTotalCredit(res.total_credit);
 
   };
@@ -155,6 +130,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
     const response = await axios.post('/upload', formData)
       .then(response => {
         setRequestId(response.data);
+        console.log("set load true");
         setLoad(true);
       })
       .catch(error => {
@@ -195,7 +171,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
                   <h4 className="response-field text-center border-bottom border-info">{t('Check Your Response')}</h4>
                   <div class="mt-5 p-4"></div>
                   {load ? (
-                    <RenderComponent requestId={requestId} callRender={callRender} />
+                    <RenderComponent requestId={requestId} registerid={registerid} callRender={callRender} />
                   ) : (
                     <div><h5>{t('Click On Submit To get Response')}</h5>
                     {down && <button onClick={downloadF}>Download Here!</button>}
@@ -236,7 +212,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
                       <div class="card-body text-center card-body shadow border rounded border-2" style={{ fontSize: 25 }}>
 
                         <p class="card-text  fs-4 fw-semibold">{t('Total Rows Count')}</p>
-                        <div class="border border-2">{t('{row_count}')}</div>
+                        <div class="border border-2">{row_count}</div>
 
                       </div>
                     </div>
@@ -248,7 +224,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
                       <div class="card-body text-center card-body shadow border rounded border-2" style={{ fontSize: 25 }}>
 
                         <p class="card-text  fs-4 fw-semibold">{t('Total Credit Left')}</p>
-                        <div class="border border-2" >{t('*Number')}</div>
+                        <div class="border border-2" >{total_credit}</div>
                       </div>
                     </div>
                   </div>
