@@ -10,7 +10,7 @@
     font-weight: bold;
   } 
 .form-control-file {
-    display: block;
+    display: block; 
     margin-top: 5px;
 }
 .btn-primary {

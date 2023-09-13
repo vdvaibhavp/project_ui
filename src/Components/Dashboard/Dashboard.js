@@ -120,10 +120,12 @@ function Dashboard({ onLogout, isAuthenticated }) {
 
     const sessionToken = Cookies.get('sessionToken');
     const tenantInfo = JSON.parse(Cookies.get('tenantInfo'));
+    const registerid = Cookies.get("registerid");
 
     formData.append('sessionToken', sessionToken);
     formData.append('tenantName', tenantInfo.name);
     formData.append('tenantOrgCode', tenantInfo.orgCode);
+    formData.append('registerid', registerid);
 
 
     //call to upload api - express
@@ -152,7 +154,7 @@ function Dashboard({ onLogout, isAuthenticated }) {
                 <div class="card-body shadow border rounded border-2" >
                   <div class="form-group">
                     <div class="border-bottom border-info fs-4 fw-semibold mb-3 text-center">
-                      <h4>{t('Upload The Files')}</h4>
+                      <h4>{t('Reconciliation Of GST Input/Credit')}</h4>
                     </div>
                     <UploadForm
                       handleFile1Change={handleFile1Change}
