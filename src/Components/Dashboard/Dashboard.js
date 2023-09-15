@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import Navbar from '../Navbar/Navbar';
 import UploadForm from './UploadForm/UploadForm';
@@ -24,13 +24,22 @@ function Dashboard({ onLogout, isAuthenticated }) {
   const [file1, setFile1] = useState(null);
   const [file2, setFile2] = useState(null);
 
+  const remcredit = parseInt(Cookies.get("remcredit") || "0");
+
+  useEffect(() => {
+    // Update the message based on the value of remcredit
+    if (remcredit < 0) {
+      setMsg("Credit has expired. Please purchase it from admin.");
+    }
+  }, [remcredit]);
+
   const [mailId, setMailId] = useState(null);
 
   const [req_id, setReqId] = useState(null);
   const [file, setFile] = useState(null);
   const [down, setDown] = useState(false);
 
-  const [total_credit,setTotalCredit]=useState(0);
+  const [total_credit,setTotalCredit]=useState(remcredit);
   const [row_count, setRowCount] = useState(0);
   const {t}=useTranslation();
 
@@ -170,15 +179,18 @@ function Dashboard({ onLogout, isAuthenticated }) {
             <div class="col-md-6">
               <div class="card bg-card bg-light text-black h-100">
                 <div class="card-body border rounded border-2 shadow text-center">
-                  <h4 className="response-field text-center border-bottom border-info">{t('Check Your Response')}</h4>
-                  <div class="mt-5 p-4"></div>
-                  {load ? (
-                    <RenderComponent requestId={requestId} registerid={registerid} callRender={callRender} />
-                  ) : (
-                    <div><h5>{t('Click On Submit To get Response')}</h5>
-                    {down && <button onClick={downloadF}>Download Here!</button>}
-                    </div>
-                  )}
+                  <h4 className="response-field text-center border-bottom border-info">
+                    {t('Check Your Response')}
+                  </h4>
+                    <div class="mt-5 p-4"></div>
+                      {load ? (
+                        <RenderComponent requestId={requestId} registerid={registerid} callRender={callRender} />
+                      ) : (
+                            <div>
+                              <h5>{msg}</h5>
+                              {down && <button onClick={downloadF}>Download Here!</button>}
+                            </div>
+                          )}
                 </div>
               </div>
             </div>
