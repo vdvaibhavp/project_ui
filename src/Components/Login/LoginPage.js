@@ -31,6 +31,7 @@ function LoginPage({ onLogin, isAuthenticated }) {
         setCookie("fname", response.data.userFirstName, { path: "/" });
         setCookie("lname", response.data.userLastName, { path: "/" });
         setCookie("registerid",response.data.registerid, {path: "/" });
+        setCookie("remcredit", response.data.remcredit, { path: "/"});
         //setCookie("sessionToken",response.data.sessionToken,{ path: "/" });
         // setCookie("sessionToken", sessionToken, { path: "/" });
         //setCookies("tenantInfo", JSON.stringify(response.data.tenant));
